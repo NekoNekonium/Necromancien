@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjfyc1tlfjqt8"]
+
+[ext_resource type="Texture2D" uid="uid://6nx03k6si5k7" path="res://Assets/SpriteSVG/plain-circle.svg" id="1_pd4qh"]
+[ext_resource type="PackedScene" uid="uid://b2mg3mjjofsdt" path="res://Composants/CMP_Movement.tscn" id="2_5cq1n"]
+[ext_resource type="PackedScene" uid="uid://bjddgxoyv846g" path="res://Composants/CMP_navigation.tscn" id="3_x6cae"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6qbts"]
+radius = 3.16228
+
+[node name="ENT_Test_Mob" type="CharacterBody2D"]
+
+[node name="CMP_movement" parent="." node_paths=PackedStringArray("navigationComponent") instance=ExtResource("2_5cq1n")]
+navigationComponent = NodePath("../CMP_Navigation")
+
+[node name="CMP_Navigation" parent="." instance=ExtResource("3_x6cae")]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("1_pd4qh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.431373, 1, 0.509804, 1)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("1_pd4qh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6qbts")
