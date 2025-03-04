@@ -17,6 +17,7 @@ func _ready():
 		SpawnMob()
 		
 	
+	if (spawnLength == 0) : return
 	$Timer.wait_time = spawnLength
 	$Timer.start()
 	

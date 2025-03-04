@@ -19,6 +19,12 @@ config/icon="res://icon.svg"
 
 Destination="Group of items that are targeted by mobs"
 
+[layer_names]
+
+2d_physics/layer_1="GeneralLayer"
+2d_physics/layer_2="AlliesLayer"
+2d_physics/layer_3="EnnemyLayer"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
