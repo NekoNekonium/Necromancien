@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1jti1lyxoejv"]
+
+[ext_resource type="Texture2D" uid="uid://y5xf4wa23y4p" path="res://Assets/SpriteSVG/click.svg" id="1_gx0me"]
+[ext_resource type="Script" path="res://Assets/Script/Global/SCR_Cursor.gd" id="1_ybq65"]
+[ext_resource type="Texture2D" uid="uid://dmkeixim4bjlf" path="res://Assets/SpriteSVG/circle.svg" id="2_daqq7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1lq10"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_hlg7b"]
+resource_name = "OnClick"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Circle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.03, 0.03), Vector2(0.1, 0.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Circle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yg5pm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Circle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.01, 0.01)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Circle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rmieg"]
+_data = {
+"OnClick": SubResource("Animation_hlg7b"),
+"RESET": SubResource("Animation_yg5pm")
+}
+
+[node name="Clickarea" type="Area2D"]
+z_index = 100
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_ybq65")
+
+[node name="Click" type="Sprite2D" parent="."]
+position = Vector2(14, 15)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_gx0me")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1lq10")
+
+[node name="Circle" type="Sprite2D" parent="."]
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("2_daqq7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rmieg")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

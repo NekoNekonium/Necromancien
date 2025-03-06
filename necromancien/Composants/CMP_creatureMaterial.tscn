@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://8p3gyrp0h5vb"]
+
+[ext_resource type="Script" path="res://Assets/Script/SCR_CreatureMaterial.gd" id="1_vpik5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mi1bv"]
+size = Vector2(40, 51)
+
+[node name="CMP_CreatureMaterial" type="Area2D"]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_vpik5")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -19.0
+offset_right = 19.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 16
+text = "Part
+pile"
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-20, -20, -20, 31, 20, 31, 20, -20)
+closed = true
+width = 2.0
+default_color = Color(0.849586, 0.189523, 0.822904, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_mi1bv")

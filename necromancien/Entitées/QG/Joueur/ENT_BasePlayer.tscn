@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkjgngayu16bc"]
+[gd_scene load_steps=5 format=3 uid="uid://dkjgngayu16bc"]
 
 [ext_resource type="Script" path="res://Assets/Script/SCR_LifeComponent.gd" id="1_0od3q"]
+[ext_resource type="PackedScene" uid="uid://8p3gyrp0h5vb" path="res://Composants/CMP_creatureMaterial.tscn" id="2_d5cx5"]
+[ext_resource type="PackedScene" uid="uid://tv7vmgbh1wm7" path="res://Composants/CMP_CreatureSpawner.tscn" id="3_d0qb0"]
+[ext_resource type="PackedScene" uid="uid://bjfyc1tlfjqt8" path="res://Entitées/ENT_testMob.tscn" id="4_nkj3m"]
 
 [node name="EntBasePlayer" type="Node2D"]
 
@@ -21,20 +24,10 @@ position = Vector2(0, -2)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(62, -41, 62, -65, -66, -65, -65, 71, 62, 71, 62, 50, 72, 50, 72, 81, -76, 81, -76, -75, 72, -75, 72, -41)
 
-[node name="BonePile" type="Button" parent="."]
-offset_left = -62.0
-offset_top = -63.0
-offset_right = -24.0
-offset_bottom = -30.0
-theme_override_font_sizes/font_size = 10
-text = "bone
-pile"
+[node name="CMP_CreatureMaterial" parent="." instance=ExtResource("2_d5cx5")]
+z_index = 10
+position = Vector2(-44, -45)
 
-[node name="RitualTable" type="Button" parent="."]
-offset_left = -61.0
-offset_top = -16.0
-offset_right = -23.0
-offset_bottom = 20.0
-theme_override_font_sizes/font_size = 10
-text = "Ritual
-Table"
+[node name="CmpCreatureSpawner" parent="." instance=ExtResource("3_d0qb0")]
+creatureCost = 5
+spawnedCreature = ExtResource("4_nkj3m")
