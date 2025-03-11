@@ -32,11 +32,11 @@ func SpawnMob():
 	
 	if (GlbScrPlayerData.cible == null):
 		
-		newMob.get_child(0).destination = self
+		#newMob.get_child(0).destination = self
 		print ("spawn error")
 	else :
 		
-		newMob.get_child(0).destination = GlbScrPlayerData.cible
+		#newMob.get_child(0).destination = GlbScrPlayerData.cible
 		print ("correct Spawn")
 		
 	newMob.position = global_position

@@ -1,20 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://tw2ssnxjwtbb"]
+[gd_scene load_steps=10 format=3 uid="uid://tw2ssnxjwtbb"]
 
+[ext_resource type="PackedScene" uid="uid://cronio5brmlds" path="res://Entitées/QG/ENT_EnnemyBase.tscn" id="1_3hvrr"]
 [ext_resource type="Texture2D" uid="uid://b1mvw0ooc4w68" path="res://Assets/SpriteSVG/plain-square.svg" id="1_vxoip"]
 [ext_resource type="Texture2D" uid="uid://6nx03k6si5k7" path="res://Assets/SpriteSVG/plain-circle.svg" id="2_eepbg"]
 [ext_resource type="PackedScene" uid="uid://dkjgngayu16bc" path="res://Entitées/QG/Joueur/ENT_BasePlayer.tscn" id="3_f1ny0"]
+[ext_resource type="PackedScene" uid="uid://c3int3imsbao6" path="res://Composants/CMP_Vie.tscn" id="6_bf4pr"]
 [ext_resource type="Script" path="res://Assets/Script/SCR_HUD.gd" id="6_vl4dy"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jefbn"]
-vertices = PackedVector2Array(224, 622, 325.969, 654.023, 5.0625, 654.969, 56, 622, 583.828, 9.0625, 577.828, 378.109, 555, 332, 548.305, 307, 548.305, 357, 794.094, 522, 815.695, 522, 808.695, 529, 895.305, 529, 888.305, 522, 910.102, 522, 530, 288.695, 434.773, 9.9375, 8.92969, 10.0469, 56, 446, 324.969, 290, 224, 571, 429.781, 230, 505, 282, 480, 288.695, 428, 290, 320.906, 230, 322.898, 11.9297, 224, 446, 906.898, 197.953, 689.094, 198.953, 690.898, 4.95313, 1149.08, 3.03906, 1154.91, 662, 695.273, 376.891, 693.273, 303.828, 792.094, 302.156, 86.9297, 592, 86.0703, 476, 194, 476, 194, 500, 586.078, 656.047, 428, 656.938, 461.695, 357, 194, 571, 194, 592, 224, 500, 461.695, 307, 530, 375.305, 588.094, 436.883, 902, 554, 895.305, 579, 802, 554, 455, 332, 877, 597.305, 692, 662, 852, 604, 827, 597.305, 808.695, 579, 692, 438.117, 505, 382, 480, 375.305)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 6, 5), PackedInt32Array(9, 10, 11), PackedInt32Array(12, 13, 14), PackedInt32Array(4, 7, 15, 16), PackedInt32Array(3, 2, 17, 18), PackedInt32Array(19, 1, 0, 20), PackedInt32Array(21, 16, 15, 22), PackedInt32Array(21, 22, 23, 24, 19, 25), PackedInt32Array(18, 17, 26, 25, 27), PackedInt32Array(28, 29, 30, 31), PackedInt32Array(28, 31, 32, 14), PackedInt32Array(33, 34, 35, 9), PackedInt32Array(36, 37, 38, 39), PackedInt32Array(40, 41, 24, 42), PackedInt32Array(43, 44, 36), PackedInt32Array(43, 36, 39), PackedInt32Array(20, 43, 39, 45), PackedInt32Array(19, 20, 45), PackedInt32Array(19, 45, 27, 25), PackedInt32Array(24, 23, 46), PackedInt32Array(47, 8, 5, 48), PackedInt32Array(49, 12, 14, 32), PackedInt32Array(50, 49, 32), PackedInt32Array(9, 11, 51), PackedInt32Array(24, 46, 52), PackedInt32Array(53, 50, 32), PackedInt32Array(53, 32, 54, 55), PackedInt32Array(56, 55, 54), PackedInt32Array(57, 56, 54), PackedInt32Array(57, 54, 58, 51), PackedInt32Array(9, 51, 58, 33), PackedInt32Array(5, 33, 58, 48), PackedInt32Array(59, 47, 48, 40), PackedInt32Array(60, 59, 40), PackedInt32Array(42, 60, 40), PackedInt32Array(42, 24, 52)])
+vertices = PackedVector2Array(224, 622, 325.969, 654.023, 5.0625, 654.969, 56, 622, 583.828, 9.0625, 577.828, 378.109, 555, 332, 548.305, 307, 548.305, 357, 794.094, 522, 815.695, 522, 808.695, 529, 895.305, 529, 888.305, 522, 910.102, 522, 530, 288.695, 434.773, 9.9375, 8.92969, 10.0469, 56, 446, 324.969, 290, 224, 571, 848.063, 71.4531, 1149.08, 3.03906, 1154.91, 662, 906.898, 197.953, 429.781, 230, 505, 282, 480, 288.695, 428, 290, 320.906, 230, 322.898, 11.9297, 224, 446, 711.023, 75.3203, 719.242, 89.9297, 700.469, 99.8203, 695.273, 376.891, 693.273, 303.828, 792.094, 302.156, 86.9297, 592, 86.0703, 476, 194, 476, 194, 500, 586.078, 656.047, 428, 656.938, 461.695, 357, 194, 571, 194, 592, 224, 500, 461.695, 307, 530, 375.305, 588.094, 436.883, 766.938, 140.422, 783.617, 125.031, 790.258, 130.07, 796.898, 146.273, 792.406, 154.133, 766.648, 163, 902, 554, 802, 554, 455, 332, 798.453, 164.172, 711.039, 119.781, 698.758, 134.711, 839.844, 64.3984, 834.031, 43.1094, 814.703, 21.3594, 794.047, 14.4766, 779.938, 29.6719, 751.047, 27.5313, 690.898, 4.95313, 737.094, 55.4531, 689.094, 198.953, 700.641, 163, 846.867, 162.711, 895.305, 579, 877, 597.305, 692, 662, 852, 604, 827, 597.305, 808.695, 579, 692, 438.117, 505, 382, 480, 375.305)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 6, 5), PackedInt32Array(9, 10, 11), PackedInt32Array(12, 13, 14), PackedInt32Array(4, 7, 15, 16), PackedInt32Array(3, 2, 17, 18), PackedInt32Array(19, 1, 0, 20), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(25, 16, 15, 26), PackedInt32Array(25, 26, 27, 28, 19, 29), PackedInt32Array(18, 17, 30, 29, 31), PackedInt32Array(32, 33, 34), PackedInt32Array(35, 36, 37, 9), PackedInt32Array(38, 39, 40, 41), PackedInt32Array(42, 43, 28, 44), PackedInt32Array(45, 46, 38), PackedInt32Array(45, 38, 41), PackedInt32Array(20, 45, 41, 47), PackedInt32Array(19, 20, 47), PackedInt32Array(19, 47, 31, 29), PackedInt32Array(28, 27, 48), PackedInt32Array(49, 8, 5, 50), PackedInt32Array(51, 52, 53, 54, 55, 56), PackedInt32Array(57, 12, 14, 23), PackedInt32Array(9, 11, 58), PackedInt32Array(28, 48, 59), PackedInt32Array(56, 55, 60), PackedInt32Array(34, 61, 62), PackedInt32Array(22, 21, 63, 64), PackedInt32Array(22, 64, 65), PackedInt32Array(66, 67, 68, 69), PackedInt32Array(68, 70, 32, 69), PackedInt32Array(22, 65, 66), PackedInt32Array(69, 22, 66), PackedInt32Array(69, 32, 34), PackedInt32Array(71, 69, 34, 62), PackedInt32Array(71, 62, 72), PackedInt32Array(24, 71, 72, 56, 60), PackedInt32Array(24, 60, 73), PackedInt32Array(24, 73, 21), PackedInt32Array(14, 24, 23), PackedInt32Array(74, 57, 23), PackedInt32Array(75, 74, 23), PackedInt32Array(75, 23, 76, 77), PackedInt32Array(78, 77, 76), PackedInt32Array(79, 78, 76), PackedInt32Array(79, 76, 80, 58), PackedInt32Array(9, 58, 80, 35), PackedInt32Array(5, 35, 80, 50), PackedInt32Array(81, 49, 50, 42), PackedInt32Array(82, 81, 42), PackedInt32Array(44, 82, 42), PackedInt32Array(44, 28, 59)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1, 0, -5, 665, 336, 664, 335, 300, 418, 300, 418, 667, 596, 666, 598, 447, 682, 448, 682, 672, 1165, 672, 1159, -7, 681, -5, 679, 209, 897, 208, 900, 512, 804, 512, 802, 292, 683, 294, 685, 367, 588, 368, 594, -1, 425, 0, 420, 220, 331, 220, 333, 2)])
+parsed_collision_mask = 4294967159
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6573p"]
 size = Vector2(74, 72)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_l3dta"]
-radius = 52.0865
+[sub_resource type="CircleShape2D" id="CircleShape2D_th13x"]
+radius = 25.0
 
 [node name="Node2D" type="Node2D"]
 z_as_relative = false
@@ -22,6 +25,9 @@ y_sort_enabled = true
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_jefbn")
+
+[node name="EntEnnemyBase" parent="NavigationRegion2D" instance=ExtResource("1_3hvrr")]
+position = Vector2(783, 136)
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationRegion2D"]
 position = Vector2(505, 332)
@@ -291,19 +297,6 @@ texture = ExtResource("1_vxoip")
 [node name="EntBasePlayer" parent="NavigationRegion2D" instance=ExtResource("3_f1ny0")]
 position = Vector2(142, 533)
 
-[node name="Objective" type="Area2D" parent="." groups=["Destination"]]
-position = Vector2(782, 102)
-collision_layer = 8
-collision_mask = 8
-
-[node name="Sprite2D" type="Sprite2D" parent="Objective"]
-self_modulate = Color(0, 0.641048, 0.286565, 0.384314)
-scale = Vector2(0.230469, 0.230469)
-texture = ExtResource("2_eepbg")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Objective"]
-shape = SubResource("CircleShape2D_l3dta")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(577, 326)
 
@@ -365,3 +358,51 @@ text = "MANA : "
 [node name="ManaCounters" type="Label" parent="Camera2D/HUD/VBoxContainer/PanelContainer2/HBoxContainer"]
 layout_mode = 2
 text = "0"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(336, 302)
+collision_layer = 5
+collision_mask = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_eepbg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_th13x")
+
+[node name="CmpVie" parent="StaticBody2D" instance=ExtResource("6_bf4pr")]
+Max_life = 10
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(336, 273)
+collision_layer = 5
+collision_mask = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_eepbg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("CircleShape2D_th13x")
+
+[node name="CmpVie" parent="StaticBody2D2" instance=ExtResource("6_bf4pr")]
+Max_life = 10
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(335, 239)
+collision_layer = 5
+collision_mask = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_eepbg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("CircleShape2D_th13x")
+
+[node name="CmpVie" parent="StaticBody2D3" instance=ExtResource("6_bf4pr")]
+Max_life = 10

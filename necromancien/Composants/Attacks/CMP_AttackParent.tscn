@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfhf540m5sc3n"]
+
+[ext_resource type="Script" path="res://Assets/Script/cmp_attack_parent.gd" id="1_2ydjw"]
+[ext_resource type="Texture2D" uid="uid://dmkeixim4bjlf" path="res://Assets/SpriteSVG/circle.svg" id="2_k11l0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ysc02"]
+radius = 20.0
+
+[node name="CMP_AttackParent" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_2ydjw")
+
+[node name="ActivationRange" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ysc02")
+
+[node name="Circle" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0, 0.65, 1)
+scale = Vector2(0.085, 0.085)
+texture = ExtResource("2_k11l0")
+
+[node name="AttackTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

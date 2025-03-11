@@ -23,6 +23,7 @@ EntCursor="*res://Entitées/ENT_Cursor.tscn"
 [global_group]
 
 Destination="Group of items that are targeted by mobs"
+EnnemyBase="the group of ennemy bases"
 
 [input]
 

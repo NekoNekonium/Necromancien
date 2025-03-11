@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cronio5brmlds"]
+
+[ext_resource type="Texture2D" uid="uid://da85gd2ime6om" path="res://Assets/SpritesPNG/cave-entrance.png" id="1_55p5v"]
+[ext_resource type="PackedScene" uid="uid://c3int3imsbao6" path="res://Composants/CMP_Vie.tscn" id="2_3dtfe"]
+
+[node name="EntEnnemyBase" type="StaticBody2D" groups=["Destination", "EnnemyBase"]]
+collision_layer = 13
+collision_mask = 13
+
+[node name="CmpVie" parent="." instance=ExtResource("2_3dtfe")]
+Max_life = 100
+
+[node name="Cave-entrance" type="Sprite2D" parent="."]
+self_modulate = Color(0.326462, 0.432306, 0.56293, 1)
+position = Vector2(-10, -47)
+scale = Vector2(0.265625, 0.265625)
+texture = ExtResource("1_55p5v")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-73, 17, -26.219, 17, -26, 0, 0, -24, 15.4809, -12.246, 25, 11, 21, 18, 54, 17, 55, -60, 48, -66, 42, -88, 26, -106, 14, -110, 1, -96, -26, -98, -38, -74, -59, -58, -50, -42, -69, -32, -60, -15, -74, 2)
