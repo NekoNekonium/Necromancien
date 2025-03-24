@@ -1,4 +1,5 @@
 extends Node2D
+class_name CMP_Movement
 
 #Refference to other nodes
 @export_category("references to other nodes")
@@ -11,6 +12,11 @@ extends Node2D
 var randDirOffset : Vector2 = Vector2(0,0)
 var ChangeVectorTimer : float = 0
 
+@export_category("Faction")
+@export var ennemy : bool = false
+
+# variables used in targeting
+var currentTarget = null
 
 
 # Called when the node enters the scene tree for the first time.
@@ -19,8 +25,12 @@ func _ready():
 	ChangeVectorTimer = randf_range(1, 5)
 	randDirOffset = Vector2(randf_range(-1,1), randf_range(-1,1))
 	
-	if(GlbScrPlayerData.cible == null):return
-	navigationComponent.target_position = GlbScrPlayerData.cible.position
+	if (ennemy) :
+		if(GlbScrPlayerData.PlayerBase == null):return
+		navigationComponent.target_position = GlbScrPlayerData.PlayerBase.position
+	else : 
+		if(GlbScrPlayerData.cible == null):return
+		navigationComponent.target_position = GlbScrPlayerData.cible.position
 	
 	pass # Replace with function body.
 
@@ -28,10 +38,18 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	if(GlbScrPlayerData.cible != null):
-		navigationComponent.target_position = GlbScrPlayerData.cible.position
-	else :
-		return
+	if (currentTarget == null):
+		if (ennemy) :
+			if(GlbScrPlayerData.PlayerBase == null):return
+			navigationComponent.target_position = GlbScrPlayerData.PlayerBase.position
+		else : 
+			if(GlbScrPlayerData.cible == null):return
+			navigationComponent.target_position = GlbScrPlayerData.cible.position
+		
+	else : 
+		
+		navigationComponent.target_position = currentTarget.position
+		
 	
 	ChangeVectorTimer -= delta
 	if (ChangeVectorTimer <= 0):

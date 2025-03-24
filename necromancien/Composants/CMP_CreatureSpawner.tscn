@@ -28,3 +28,7 @@ offset_bottom = 19.0
 theme_override_font_sizes/font_size = 16
 text = "Spawn
 Monster"
+
+[node name="AutomationTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="AutomationTimer" to="." method="_on_automation_timer_timeout"]

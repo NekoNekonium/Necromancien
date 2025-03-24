@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cronio5brmlds"]
+[gd_scene load_steps=5 format=3 uid="uid://cronio5brmlds"]
 
 [ext_resource type="Texture2D" uid="uid://da85gd2ime6om" path="res://Assets/SpritesPNG/cave-entrance.png" id="1_55p5v"]
 [ext_resource type="PackedScene" uid="uid://c3int3imsbao6" path="res://Composants/CMP_Vie.tscn" id="2_3dtfe"]
+[ext_resource type="PackedScene" uid="uid://tv7vmgbh1wm7" path="res://Composants/CMP_CreatureSpawner.tscn" id="3_locb4"]
+[ext_resource type="PackedScene" uid="uid://bgeq7vlsx6avp" path="res://Entitées/ENT_TestEnnemy.tscn" id="4_2hobs"]
 
 [node name="EntEnnemyBase" type="StaticBody2D" groups=["Destination", "EnnemyBase"]]
 collision_layer = 13
@@ -18,3 +20,10 @@ texture = ExtResource("1_55p5v")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-73, 17, -26.219, 17, -26, 0, 0, -24, 15.4809, -12.246, 25, 11, 21, 18, 54, 17, 55, -60, 48, -66, 42, -88, 26, -106, 14, -110, 1, -96, -26, -98, -38, -74, -59, -58, -50, -42, -69, -32, -60, -15, -74, 2)
+
+[node name="CmpCreatureSpawner" parent="." instance=ExtResource("3_locb4")]
+creatureCost = 0
+spawnedCreature = ExtResource("4_2hobs")
+isEnnemy = true
+automation = true
+automationTime = 8.0
