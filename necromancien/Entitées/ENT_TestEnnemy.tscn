@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgeq7vlsx6avp"]
+[gd_scene load_steps=9 format=3 uid="uid://bgeq7vlsx6avp"]
 
 [ext_resource type="Texture2D" uid="uid://6nx03k6si5k7" path="res://Assets/SpriteSVG/plain-circle.svg" id="1_ndgo3"]
+[ext_resource type="Texture2D" uid="uid://b1mvw0ooc4w68" path="res://Assets/SpriteSVG/plain-square.svg" id="2_8lqfn"]
 [ext_resource type="PackedScene" uid="uid://dfhf540m5sc3n" path="res://Composants/Attacks/CMP_AttackParent.tscn" id="2_g25v4"]
 [ext_resource type="PackedScene" uid="uid://b2mg3mjjofsdt" path="res://Composants/CMP_Movement.tscn" id="3_vwmtq"]
 [ext_resource type="PackedScene" uid="uid://bjddgxoyv846g" path="res://Composants/CMP_navigation.tscn" id="4_p20yr"]
@@ -15,14 +16,26 @@ collision_layer = 5
 collision_mask = 5
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0, 0, 1)
+modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.0507812, 0.0507812)
 texture = ExtResource("1_ndgo3")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D2"]
+position = Vector2(175, 0)
+rotation = 0.785398
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_8lqfn")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0, 0.0166664, 1)
+modulate = Color(1, 0, 0, 1)
 scale = Vector2(0.046875, 0.046875)
 texture = ExtResource("1_ndgo3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(190, 0)
+rotation = 0.785398
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_8lqfn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_huvsu")
