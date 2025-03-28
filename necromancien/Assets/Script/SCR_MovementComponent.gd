@@ -63,5 +63,8 @@ func _process(delta):
 		
 		get_parent().velocity = ((nextPath - get_parent().position).normalized() +  (randDirOffset / 4)).normalized() * speed
 		get_parent().move_and_slide()
+		if (get_parent().velocity.length() > 0) :
+			get_parent().look_at(get_parent().position + get_parent().velocity.normalized())
+		
 	
 	pass
