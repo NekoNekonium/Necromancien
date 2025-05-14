@@ -18,6 +18,7 @@ var ChangeVectorTimer : float = 0
 # variables used in targeting
 var currentTarget = null
 
+var locked : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,13 +31,15 @@ func _ready():
 		navigationComponent.target_position = GlbScrPlayerData.PlayerBase.position
 	else : 
 		if(GlbScrPlayerData.cible == null):return
-		navigationComponent.target_position = GlbScrPlayerData.cible.position
+		navigationComponent.target_position = GlbScrPlayerData.cible
 	
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if (locked) : return
+	
 	
 	if (currentTarget == null):
 		if (ennemy) :
@@ -44,7 +47,7 @@ func _process(delta):
 			navigationComponent.target_position = GlbScrPlayerData.PlayerBase.position
 		else : 
 			if(GlbScrPlayerData.cible == null):return
-			navigationComponent.target_position = GlbScrPlayerData.cible.position
+			navigationComponent.target_position = GlbScrPlayerData.cible
 		
 	else : 
 		

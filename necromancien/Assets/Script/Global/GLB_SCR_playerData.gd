@@ -13,8 +13,8 @@ var mana : int = 0
 ########################################################
 ## REFERENCES :
 
-#Reference a la cible actuel du joueur
-var cible : Node2D
+#Reference a la cible actuel du joueur, en tant que position
+var cible : Vector2
 
 #Reference a la base du joueur.
 var PlayerBase : Node2D

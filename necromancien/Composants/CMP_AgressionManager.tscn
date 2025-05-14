@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://pvpo8kprkut3"]
 
-[ext_resource type="Script" path="res://Assets/Script/SCR_AgressionManager.gd" id="1_6yq5o"]
+[ext_resource type="Script" path="res://Assets/Script/creatures/SCR_AgressionManager.gd" id="1_6yq5o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu7bc"]
 radius = 100.0

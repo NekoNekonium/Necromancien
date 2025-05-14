@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1jti1lyxoejv"]
+[gd_scene load_steps=11 format=3 uid="uid://b1jti1lyxoejv"]
 
 [ext_resource type="Texture2D" uid="uid://y5xf4wa23y4p" path="res://Assets/SpriteSVG/click.svg" id="1_gx0me"]
 [ext_resource type="Script" path="res://Assets/Script/Global/SCR_Cursor.gd" id="1_ybq65"]
 [ext_resource type="Texture2D" uid="uid://dmkeixim4bjlf" path="res://Assets/SpriteSVG/circle.svg" id="2_daqq7"]
+[ext_resource type="PackedScene" uid="uid://dp366otucuhyl" path="res://Composants/Spell System/CMP_SpellManager.tscn" id="4_da7jk"]
+[ext_resource type="Script" path="res://Assets/Script/Debug/Spell_label.gd" id="5_w2cnf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1lq10"]
 radius = 8.0
@@ -68,6 +70,8 @@ _data = {
 "RESET": SubResource("Animation_yg5pm")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kc5bg"]
+
 [node name="Clickarea" type="Area2D"]
 z_index = 100
 collision_layer = 8
@@ -90,6 +94,22 @@ texture = ExtResource("2_daqq7")
 libraries = {
 "": SubResource("AnimationLibrary_rmieg")
 }
+
+[node name="CmpSpellManager" parent="." node_paths=PackedStringArray("SpellArea") instance=ExtResource("4_da7jk")]
+SpellArea = NodePath("../SpellEffectArea/CollisionShape2D")
+
+[node name="SpellEffectArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpellEffectArea"]
+shape = SubResource("CircleShape2D_kc5bg")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -18.0
+offset_top = -23.0
+text = "0"
+script = ExtResource("5_w2cnf")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

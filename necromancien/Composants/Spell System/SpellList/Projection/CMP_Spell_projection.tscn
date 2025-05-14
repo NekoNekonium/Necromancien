@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo67wkcj0436k"]
+
+[ext_resource type="Script" path="res://Assets/Script/SpellSystem/SCR_CMP_Targeting.gd" id="1_uea4m"]
+[ext_resource type="Script" path="res://Assets/Script/SpellSystem/SCR_spell_project.gd" id="1_yk8tp"]
+[ext_resource type="Script" path="res://Assets/Script/SpellSystem/Effects/SCR_SpellEffect_projection.gd" id="3_n1vte"]
+
+[node name="CmpSpellProjection" type="Node" node_paths=PackedStringArray("targeting", "effect")]
+script = ExtResource("1_yk8tp")
+targeting = NodePath("CMP_Targeting")
+effect = NodePath("SpellEffect_projection")
+
+[node name="CMP_Targeting" type="Node" parent="."]
+script = ExtResource("1_uea4m")
+spellTargetMode = 2
+spellAreaSize = 30.0
+spellFilterMode = 2
+
+[node name="SpellEffect_projection" type="Node" parent="."]
+script = ExtResource("3_n1vte")

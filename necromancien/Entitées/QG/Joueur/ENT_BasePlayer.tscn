@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dkjgngayu16bc"]
 
 [ext_resource type="Script" path="res://Assets/Script/SCR_LifeComponent.gd" id="1_0od3q"]
-[ext_resource type="Script" path="res://Assets/Script/SCR_PlayerBase_init.gd" id="1_a4a3t"]
+[ext_resource type="Script" path="res://Assets/Script/Bases/SCR_PlayerBase_init.gd" id="1_a4a3t"]
 [ext_resource type="PackedScene" uid="uid://8p3gyrp0h5vb" path="res://Composants/CMP_creatureMaterial.tscn" id="2_d5cx5"]
 [ext_resource type="PackedScene" uid="uid://tv7vmgbh1wm7" path="res://Composants/CMP_CreatureSpawner.tscn" id="3_d0qb0"]
 [ext_resource type="PackedScene" uid="uid://bjfyc1tlfjqt8" path="res://Entitées/ENT_testMob.tscn" id="4_nkj3m"]

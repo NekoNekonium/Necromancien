@@ -11,7 +11,6 @@ func changeLife(Mod : int, Attack : bool) -> void:
 	
 	life += Mod
 	
-	print(life)
 	
 	if (life > Max_life):
 		

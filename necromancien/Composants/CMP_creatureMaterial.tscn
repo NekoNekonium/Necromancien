@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://8p3gyrp0h5vb"]
 
-[ext_resource type="Script" path="res://Assets/Script/SCR_CreatureMaterial.gd" id="1_vpik5"]
+[ext_resource type="Script" path="res://Assets/Script/Bases/SCR_CreatureMaterial.gd" id="1_vpik5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mi1bv"]
 size = Vector2(40, 51)

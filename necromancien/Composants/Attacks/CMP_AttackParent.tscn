@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfhf540m5sc3n"]
 
-[ext_resource type="Script" path="res://Assets/Script/cmp_attack_parent.gd" id="1_2ydjw"]
+[ext_resource type="Script" path="res://Assets/Script/creatures/cmp_attack_parent.gd" id="1_2ydjw"]
 [ext_resource type="Texture2D" uid="uid://dmkeixim4bjlf" path="res://Assets/SpriteSVG/circle.svg" id="2_k11l0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ysc02"]

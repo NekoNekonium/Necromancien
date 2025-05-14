@@ -22,23 +22,52 @@ func _input(event):
 		position = event.position
 	
 	if event.is_action_pressed("Click"):
-		
 		$AnimationPlayer.play("OnClick")
-		ClickAction()
+		ClickAction(inputType.clicked)
+	
+	
+	if (event.is_action("RightClick")):
+		
+		if (event.is_action_pressed("RightClick")):
+			ClickAction_right(inputType.clicked)
+			
+			pass
+		elif (event.is_action_released("RightClick")) :
+			
+			ClickAction_right(inputType.release)
+			pass
+		else : 
+			
+			ClickAction_right(inputType.held)
+			
+		
+		
+		pass
+	
 	
 
-func ClickAction():
+
+#enum qui indique si l'action est click, held, ou release
+enum inputType {clicked, held, release}
+
+func ClickAction_right(type : inputType):
 	
+	if (type == inputType.clicked) :
+		$CmpSpellManager.get_child($CmpSpellManager.spellIndex).ReceiveInputStart()
+		pass
+	
+	if (type == inputType.held):
+		$CmpSpellManager.get_child($CmpSpellManager.spellIndex).ReceiveInputHeld()
+		pass
+	
+	if (type == inputType.release):
+		$CmpSpellManager.get_child($CmpSpellManager.spellIndex).ReceiveInputRelease()
+		
+		pass
+	
+
+func ClickAction(type : inputType):
 	if (currentTarget != null):
-		
-		if (currentTarget.is_in_group("Destination")) :
-			
-			GlbScrPlayerData.cible = currentTarget
-			
-			
-			
-			return
-		
 		
 		currentTarget.is_pressed()
 	

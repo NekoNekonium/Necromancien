@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bs6oebj304l45"]
+
+[ext_resource type="Script" path="res://Assets/Script/SpellSystem/SCR_spell_guidance.gd" id="1_5jewk"]
+[ext_resource type="Script" path="res://Assets/Script/SpellSystem/SCR_CMP_Targeting.gd" id="2_8go01"]
+[ext_resource type="Script" path="res://Assets/Script/SpellSystem/Effects/SCR_SpellEffect_guide.gd" id="3_mub4e"]
+
+[node name="ScnSpellGuidance" type="Node" node_paths=PackedStringArray("targeting", "effect")]
+script = ExtResource("1_5jewk")
+targeting = NodePath("CMP_Targeting")
+effect = NodePath("SpellEffect_Guide")
+
+[node name="CMP_Targeting" type="Node" parent="."]
+script = ExtResource("2_8go01")
+
+[node name="SpellEffect_Guide" type="Node" parent="."]
+script = ExtResource("3_mub4e")

@@ -20,7 +20,7 @@ func _ready():
 #to modify in child 
 func LaunchAttack():
 	
-	print("attack !")
+	
 	
 	for t in get_overlapping_bodies() :
 		
@@ -28,7 +28,7 @@ func LaunchAttack():
 		
 		for n in t.get_children() :
 			if n.name == "CmpVie" :
-				print ("correct life node")
+				
 				lifeNode = n
 				break
 			
