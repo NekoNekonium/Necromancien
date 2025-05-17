@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cshovha0qauwo"]
+
+[ext_resource type="Script" path="res://Assets/Script/SpellSystem/SCR_Spell_spawn.gd" id="1_afnf7"]
+[ext_resource type="Script" path="res://Assets/Script/SpellSystem/SCR_CMP_Targeting.gd" id="1_sslyk"]
+[ext_resource type="Script" path="res://Assets/Script/SpellSystem/Effects/SCR_SpellEffect_Spawn.gd" id="2_rq063"]
+[ext_resource type="PackedScene" uid="uid://cwruqys3bufot" path="res://Entitées/SpellCreations/ENT_WallObstacles.tscn" id="3_gm6hi"]
+
+[node name="CmpSpellWall" type="Node" node_paths=PackedStringArray("targeting", "effect")]
+script = ExtResource("1_afnf7")
+targeting = NodePath("CMP_Targeting")
+effect = NodePath("SpellEffect_Spawn")
+
+[node name="CMP_Targeting" type="Node" parent="."]
+script = ExtResource("1_sslyk")
+
+[node name="SpellEffect_Spawn" type="Node" parent="."]
+script = ExtResource("2_rq063")
+spawnedScene = ExtResource("3_gm6hi")

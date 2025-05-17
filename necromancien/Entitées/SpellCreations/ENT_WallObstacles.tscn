@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwruqys3bufot"]
+
+[ext_resource type="Texture2D" uid="uid://clbgfnp0jq5wi" path="res://Assets/SpriteSVG/rock.svg" id="1_vbfkj"]
+[ext_resource type="PackedScene" uid="uid://c3int3imsbao6" path="res://Composants/CMP_Vie.tscn" id="2_te0ks"]
+
+[node name="EntWallObstacles" type="StaticBody2D"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="Rock" type="Sprite2D" parent="."]
+position = Vector2(-1, 2)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_vbfkj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(0.1, 0.1)
+polygon = PackedVector2Array(-29, -231, -189, -182, -218, -72, -208, -20, -177, 76, -38, 230, 15, 237, 176, 212, 222, 8, 136, -142)
+
+[node name="CmpVie" parent="." instance=ExtResource("2_te0ks")]
+Max_life = 25

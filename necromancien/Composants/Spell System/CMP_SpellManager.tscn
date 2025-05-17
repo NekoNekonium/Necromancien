@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp366otucuhyl"]
+[gd_scene load_steps=5 format=3 uid="uid://dp366otucuhyl"]
 
 [ext_resource type="Script" path="res://Assets/Script/SpellSystem/SCR_spell_manager.gd" id="1_jctyl"]
 [ext_resource type="PackedScene" uid="uid://bs6oebj304l45" path="res://Composants/Spell System/SpellList/Guidance/CMP_Spell_guidance.tscn" id="2_nbssf"]
 [ext_resource type="PackedScene" uid="uid://bo67wkcj0436k" path="res://Composants/Spell System/SpellList/Projection/CMP_Spell_projection.tscn" id="3_0yptj"]
+[ext_resource type="PackedScene" uid="uid://cshovha0qauwo" path="res://Composants/Spell System/SpellList/Wall/CMP_Spell_Wall.tscn" id="4_kkd2n"]
 
 [node name="CmpSpellManager" type="Node"]
 script = ExtResource("1_jctyl")
@@ -10,3 +11,5 @@ script = ExtResource("1_jctyl")
 [node name="ScnSpellGuidance" parent="." instance=ExtResource("2_nbssf")]
 
 [node name="CmpSpellProjection" parent="." instance=ExtResource("3_0yptj")]
+
+[node name="CmpSpellWall" parent="." instance=ExtResource("4_kkd2n")]
