@@ -1,0 +1,132 @@
+[gd_scene load_steps=10 format=3 uid="uid://f8g7h6i5j4k3l2"]
+
+[ext_resource type="Texture2D" uid="uid://6nx03k6si5k7" path="res://Assets/SpriteSVG/plain-circle.svg" id="1_sanglier"]
+[ext_resource type="PackedScene" uid="uid://b2mg3mjjofsdt" path="res://Composants/CMP_Movement.tscn" id="2_movement"]
+[ext_resource type="PackedScene" uid="uid://bjddgxoyv846g" path="res://Composants/CMP_navigation.tscn" id="3_navigation"]
+[ext_resource type="Texture2D" uid="uid://b1mvw0ooc4w68" path="res://Assets/SpriteSVG/plain-square.svg" id="4_indicator"]
+[ext_resource type="PackedScene" uid="uid://dfhf540m5sc3n" path="res://Composants/Attacks/CMP_AttackParent.tscn" id="5_attack"]
+[ext_resource type="PackedScene" uid="uid://c3int3imsbao6" path="res://Composants/CMP_Vie.tscn" id="6_life"]
+[ext_resource type="PackedScene" uid="uid://pvpo8kprkut3" path="res://Composants/CMP_AgressionManager.tscn" id="7_aggression"]
+[ext_resource type="Script" path="res://Assets/Script/SCR_GardeSanglier.gd" id="8_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sanglier"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_charge"]
+radius = 200.0
+
+[node name="ENT_GardeSanglier" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("8_script")
+
+[node name="CMP_movement" parent="." node_paths=PackedStringArray("navigationComponent") instance=ExtResource("2_movement")]
+navigationComponent = NodePath("../CMP_Navigation")
+speed = 80.0
+
+[node name="CMP_Navigation" parent="." instance=ExtResource("3_navigation")]
+
+[node name="SpriteCorps" type="Sprite2D" parent="."]
+modulate = Color(0.4, 0.3, 0.2, 1.0)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("1_sanglier")
+
+[node name="SpriteDefenses" type="Sprite2D" parent="SpriteCorps"]
+modulate = Color(0.8, 0.7, 0.6, 1.0)
+position = Vector2(-80, -40)
+rotation = -0.3
+scale = Vector2(0.4, 1.2)
+texture = ExtResource("4_indicator")
+
+[node name="SpriteDefenses2" type="Sprite2D" parent="SpriteCorps"]
+modulate = Color(0.8, 0.7, 0.6, 1.0)
+position = Vector2(80, -40)
+rotation = 0.3
+scale = Vector2(0.4, 1.2)
+texture = ExtResource("4_indicator")
+
+[node name="SpriteMuseau" type="Sprite2D" parent="SpriteCorps"]
+modulate = Color(0.3, 0.2, 0.1, 1.0)
+position = Vector2(0, 60)
+scale = Vector2(0.6, 0.4)
+texture = ExtResource("1_sanglier")
+
+[node name="SpriteBouclier" type="Sprite2D" parent="SpriteCorps"]
+modulate = Color(0.6, 0.5, 0.3, 0.8)
+position = Vector2(-100, 0)
+rotation = 0.2
+scale = Vector2(0.8, 1.0)
+texture = ExtResource("4_indicator")
+
+[node name="SpriteOmbre" type="Sprite2D" parent="."]
+modulate = Color(0.2, 0.15, 0.1, 0.5)
+scale = Vector2(0.055, 0.055)
+texture = ExtResource("1_sanglier")
+z_index = -1
+
+[node name="SpriteYeux" type="Sprite2D" parent="."]
+modulate = Color(0.8, 0.2, 0.1, 1.0)
+position = Vector2(2, -2)
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("1_sanglier")
+
+[node name="SpriteYeux2" type="Sprite2D" parent="."]
+modulate = Color(0.8, 0.2, 0.1, 1.0)
+position = Vector2(-2, -2)
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("1_sanglier")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sanglier")
+
+[node name="CMP_AttackParent" parent="." instance=ExtResource("5_attack")]
+TrackedCollision = 3
+
+[node name="CmpVie" parent="." instance=ExtResource("6_life")]
+Max_life = 8
+
+[node name="CmpAgressionManager" parent="." node_paths=PackedStringArray("movementControler") instance=ExtResource("7_aggression")]
+collision_layer = 3
+collision_mask = 3
+movementControler = NodePath("../CMP_movement")
+defensive_mode = true
+
+[node name="ChargeDetection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 7
+
+[node name="ChargeShape" type="CollisionShape2D" parent="ChargeDetection"]
+shape = SubResource("CircleShape2D_charge")
+debug_color = Color(0.8, 0.2, 0.1, 0.2)
+
+[node name="ChargeTimer" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
+[node name="DefenseTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = false
+
+[node name="ResistanceTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = false
+
+[node name="ChargeLine" type="Line2D" parent="."]
+width = 3.0
+default_color = Color(0.8, 0.2, 0.1, 0.7)
+z_index = 1
+
+[node name="EffetCharge" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 20
+lifetime = 1.0
+speed_scale = 2.0
+direction = Vector2(1, 0)
+spread = 30.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.5
+scale_amount_max = 1.2
+color = Color(0.6, 0.4, 0.2, 0.8)
+
+[connection signal="death" from="CmpVie" to="." method="_on_cmp_vie_death"] 

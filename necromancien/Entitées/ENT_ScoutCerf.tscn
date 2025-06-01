@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://e8f9g6h5i4j3k2"]
+
+[ext_resource type="Texture2D" uid="uid://6nx03k6si5k7" path="res://Assets/SpriteSVG/plain-circle.svg" id="1_scout"]
+[ext_resource type="PackedScene" uid="uid://b2mg3mjjofsdt" path="res://Composants/CMP_Movement.tscn" id="2_movement"]
+[ext_resource type="PackedScene" uid="uid://bjddgxoyv846g" path="res://Composants/CMP_navigation.tscn" id="3_navigation"]
+[ext_resource type="Texture2D" uid="uid://b1mvw0ooc4w68" path="res://Assets/SpriteSVG/plain-square.svg" id="4_indicator"]
+[ext_resource type="PackedScene" uid="uid://dfhf540m5sc3n" path="res://Composants/Attacks/CMP_AttackParent.tscn" id="5_attack"]
+[ext_resource type="PackedScene" uid="uid://c3int3imsbao6" path="res://Composants/CMP_Vie.tscn" id="6_life"]
+[ext_resource type="PackedScene" uid="uid://pvpo8kprkut3" path="res://Composants/CMP_AgressionManager.tscn" id="7_aggression"]
+[ext_resource type="Script" path="res://Assets/Script/SCR_ScoutCerf.gd" id="8_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_scout"]
+radius = 4.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_detection"]
+radius = 150.0
+
+[node name="ENT_ScoutCerf" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("8_script")
+
+[node name="CMP_movement" parent="." node_paths=PackedStringArray("navigationComponent") instance=ExtResource("2_movement")]
+navigationComponent = NodePath("../CMP_Navigation")
+
+[node name="CMP_Navigation" parent="." instance=ExtResource("3_navigation")]
+
+[node name="SpriteCorps" type="Sprite2D" parent="."]
+modulate = Color(0.8, 0.6, 0.4, 0.9)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("1_scout")
+
+[node name="SpriteCornes" type="Sprite2D" parent="SpriteCorps"]
+modulate = Color(0.6, 0.4, 0.2, 1.0)
+position = Vector2(-50, -80)
+rotation = -0.5
+scale = Vector2(0.3, 0.8)
+texture = ExtResource("4_indicator")
+
+[node name="SpriteCornes2" type="Sprite2D" parent="SpriteCorps"]
+modulate = Color(0.6, 0.4, 0.2, 1.0)
+position = Vector2(50, -80)
+rotation = 0.5
+scale = Vector2(0.3, 0.8)
+texture = ExtResource("4_indicator")
+
+[node name="SpriteIndicateur" type="Sprite2D" parent="SpriteCorps"]
+modulate = Color(1.0, 0.8, 0.4, 0.8)
+position = Vector2(90, 0)
+rotation = 0.785398
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_indicator")
+
+[node name="SpriteOmbre" type="Sprite2D" parent="."]
+modulate = Color(0.3, 0.2, 0.1, 0.4)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_scout")
+z_index = -1
+
+[node name="SpriteYeux" type="Sprite2D" parent="."]
+modulate = Color(0.2, 0.8, 1.0, 1.0)
+position = Vector2(1.5, -1)
+scale = Vector2(0.008, 0.008)
+texture = ExtResource("1_scout")
+
+[node name="SpriteYeux2" type="Sprite2D" parent="."]
+modulate = Color(0.2, 0.8, 1.0, 1.0)
+position = Vector2(-1.5, -1)
+scale = Vector2(0.008, 0.008)
+texture = ExtResource("1_scout")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_scout")
+
+[node name="CMP_AttackParent" parent="." instance=ExtResource("5_attack")]
+TrackedCollision = 3
+
+[node name="CmpVie" parent="." instance=ExtResource("6_life")]
+Max_life = 2
+
+[node name="CmpAgressionManager" parent="." node_paths=PackedStringArray("movementControler") instance=ExtResource("7_aggression")]
+collision_layer = 3
+collision_mask = 3
+movementControler = NodePath("../CMP_movement")
+defensive_mode = false
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 7
+
+[node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_detection")
+debug_color = Color(0.2, 0.8, 1, 0.25)
+
+[node name="ScanTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="AlertTimer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = false
+
+[node name="VisionLine" type="Line2D" parent="."]
+width = 1.0
+default_color = Color(0.2, 0.8, 1.0, 0.5)
+z_index = 1
+
+[connection signal="death" from="CmpVie" to="." method="_on_cmp_vie_death"] 

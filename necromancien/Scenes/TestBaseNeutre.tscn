@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn4xmwik3kls1"]
+
+[ext_resource type="PackedScene" path="res://Entitées/QG/ENT_BaseNeutre.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Assets/Script/SCR_TestBaseNeutre.gd" id="2_script"]
+
+[node name="TestBaseNeutre" type="Node2D"]
+script = ExtResource("2_script")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(400, 300)
+zoom = Vector2(0.7, 0.7)
+
+[node name="BaseNeutre" parent="." instance=ExtResource("1_base")]
+position = Vector2(400, 300)
+
+[node name="LabelInstructions" type="Label" parent="."]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 400.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "🏛️ BASE NEUTRE - SERVITEURS DES OGRES
+🦌 Observez les Scout-Cerf patrouiller automatiquement"

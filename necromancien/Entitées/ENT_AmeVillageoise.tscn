@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8h4j5k6l7m8n9"]
+
+[ext_resource type="Texture2D" uid="uid://6nx03k6si5k7" path="res://Assets/SpriteSVG/plain-circle.svg" id="1_ame"]
+[ext_resource type="PackedScene" uid="uid://b2mg3mjjofsdt" path="res://Composants/CMP_Movement.tscn" id="2_movement"]
+[ext_resource type="PackedScene" uid="uid://bjddgxoyv846g" path="res://Composants/CMP_navigation.tscn" id="3_navigation"]
+[ext_resource type="Texture2D" uid="uid://b1mvw0ooc4w68" path="res://Assets/SpriteSVG/plain-square.svg" id="4_indicator"]
+[ext_resource type="PackedScene" uid="uid://dfhf540m5sc3n" path="res://Composants/Attacks/CMP_AttackParent.tscn" id="5_attack"]
+[ext_resource type="PackedScene" uid="uid://c3int3imsbao6" path="res://Composants/CMP_Vie.tscn" id="6_life"]
+[ext_resource type="PackedScene" uid="uid://pvpo8kprkut3" path="res://Composants/CMP_AgressionManager.tscn" id="7_aggression"]
+[ext_resource type="Script" path="res://Assets/Script/SCR_AmeVillageoise.gd" id="8_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ame"]
+radius = 4.0
+
+[node name="ENT_AmeVillageoise" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("8_script")
+
+[node name="CMP_movement" parent="." node_paths=PackedStringArray("navigationComponent") instance=ExtResource("2_movement")]
+navigationComponent = NodePath("../CMP_Navigation")
+
+[node name="CMP_Navigation" parent="." instance=ExtResource("3_navigation")]
+
+[node name="SpriteCorps" type="Sprite2D" parent="."]
+modulate = Color(0.7, 0.9, 1.0, 0.6)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("1_ame")
+
+[node name="SpriteIndicateur" type="Sprite2D" parent="SpriteCorps"]
+modulate = Color(0.8, 0.8, 1.0, 0.8)
+position = Vector2(120, 0)
+rotation = 0.785398
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_indicator")
+
+[node name="SpriteOmbre" type="Sprite2D" parent="."]
+modulate = Color(0.2, 0.2, 0.3, 0.3)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("1_ame")
+z_index = -1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ame")
+
+[node name="CMP_AttackParent" parent="." instance=ExtResource("5_attack")]
+TrackedCollision = 3
+
+[node name="CmpVie" parent="." instance=ExtResource("6_life")]
+Max_life = 2
+
+[node name="CmpAgressionManager" parent="." node_paths=PackedStringArray("movementControler") instance=ExtResource("7_aggression")]
+collision_layer = 3
+collision_mask = 3
+movementControler = NodePath("../CMP_movement")
+defensive_mode = true
+
+[node name="PhaseTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = false 
