@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dkjgngayu16bc"]
+[gd_scene load_steps=8 format=3 uid="uid://dkjgngayu16bc"]
 
 [ext_resource type="Script" path="res://Assets/Script/SCR_LifeComponent.gd" id="1_0od3q"]
 [ext_resource type="Script" path="res://Assets/Script/SCR_PlayerBase_init.gd" id="1_a4a3t"]
 [ext_resource type="PackedScene" uid="uid://8p3gyrp0h5vb" path="res://Composants/CMP_creatureMaterial.tscn" id="2_d5cx5"]
 [ext_resource type="PackedScene" uid="uid://tv7vmgbh1wm7" path="res://Composants/CMP_CreatureSpawner.tscn" id="3_d0qb0"]
 [ext_resource type="PackedScene" uid="uid://bjfyc1tlfjqt8" path="res://Entitées/ENT_testMob.tscn" id="4_nkj3m"]
+[ext_resource type="PackedScene" uid="uid://c8h4j5k6l7m8n9" path="res://Entitées/ENT_AmeVillageoise.tscn" id="6_ame_villageoise"]
+[ext_resource type="PackedScene" uid="uid://d9e8f7g6h5i4j3" path="res://Entitées/ENT_EspritAnimal.tscn" id="7_esprit_animal"]
 
 [node name="EntBasePlayer" type="Node2D"]
 script = ExtResource("1_a4a3t")
@@ -14,23 +16,101 @@ script = ExtResource("1_0od3q")
 Max_life = 100
 
 [node name="Line2D" type="Line2D" parent="."]
-position = Vector2(67, -72)
-scale = Vector2(2, 2)
-points = PackedVector2Array(0, 14.5, 0, 0, -69, 0, -69, 73, 0, 73, 0, 60)
+position = Vector2(90, -100)
+scale = Vector2(2.5, 2.5)
+points = PackedVector2Array(0, 14.5, 0, 0, -90, 0, -90, 90, 0, 90, 0, 76)
 width = 5.0
 default_color = Color(0, 1, 0, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(0, -5)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(62, -41, 62, -65, -66, -65, -65, 71, 62, 71, 62, 50, 72, 50, 72, 81, -76, 81, -76, -75, 72, -75, 72, -41)
+polygon = PackedVector2Array(85, -60, 85, -95, -90, -95, -90, 115, 85, 115, 85, 75, 100, 75, 100, 130, -105, 130, -105, -110, 100, -110, 100, -60)
 
 [node name="CMP_CreatureMaterial" parent="." instance=ExtResource("2_d5cx5")]
 z_index = 10
-position = Vector2(-44, -45)
+position = Vector2(-60, -70)
 autoharvest_wait = 1.0
 
-[node name="CmpCreatureSpawner" parent="." instance=ExtResource("3_d0qb0")]
+[node name="SpawnerTestMob" parent="." instance=ExtResource("3_d0qb0")]
+position = Vector2(60, 0)
 creatureCost = 5
 spawnedCreature = ExtResource("4_nkj3m")
+
+[node name="LabelTestMob" type="Label" parent="SpawnerTestMob"]
+offset_left = -35.0
+offset_top = -45.0
+offset_right = 35.0
+offset_bottom = -30.0
+theme_override_colors/font_color = Color(0.5, 1, 0.5, 1)
+theme_override_font_sizes/font_size = 12
+text = "⚔️ Test Mob (5)"
+horizontal_alignment = 1
+
+[node name="ColorIndicatorTest" type="ColorRect" parent="SpawnerTestMob"]
+offset_left = -25.0
+offset_top = -8.0
+offset_right = 25.0
+offset_bottom = 2.0
+color = Color(0.5, 1, 0.5, 0.2)
+
+[node name="SpawnerAmeVillageoise" parent="." instance=ExtResource("3_d0qb0")]
+position = Vector2(-60, 0)
+creatureCost = 2
+spawnedCreature = ExtResource("6_ame_villageoise")
+isEnnemy = false
+automation = false
+automationTime = 10.0
+
+[node name="LabelAmeVillageoise" type="Label" parent="SpawnerAmeVillageoise"]
+offset_left = -50.0
+offset_top = -45.0
+offset_right = 50.0
+offset_bottom = -30.0
+theme_override_colors/font_color = Color(0.7, 0.9, 1.0, 1)
+theme_override_font_sizes/font_size = 12
+text = "👻 Âme Villageoise (2)"
+horizontal_alignment = 1
+
+[node name="ColorIndicatorAme" type="ColorRect" parent="SpawnerAmeVillageoise"]
+offset_left = -25.0
+offset_top = -8.0
+offset_right = 25.0
+offset_bottom = 2.0
+color = Color(0.7, 0.9, 1.0, 0.3)
+
+[node name="SpawnerEspritAnimal" parent="." instance=ExtResource("3_d0qb0")]
+position = Vector2(0, 70)
+creatureCost = 3
+spawnedCreature = ExtResource("7_esprit_animal")
+isEnnemy = false
+automation = false
+automationTime = 8.0
+
+[node name="LabelEspritAnimal" type="Label" parent="SpawnerEspritAnimal"]
+offset_left = -50.0
+offset_top = -45.0
+offset_right = 50.0
+offset_bottom = -30.0
+theme_override_colors/font_color = Color(1.0, 0.6, 0.2, 1)
+theme_override_font_sizes/font_size = 12
+text = "🐺 Esprit Animal (3)"
+horizontal_alignment = 1
+
+[node name="ColorIndicatorEsprit" type="ColorRect" parent="SpawnerEspritAnimal"]
+offset_left = -25.0
+offset_top = -8.0
+offset_right = 25.0
+offset_bottom = 2.0
+color = Color(1.0, 0.6, 0.2, 0.3)
+
+[node name="LabelBase" type="Label" parent="."]
+offset_left = -40.0
+offset_top = -90.0
+offset_right = 40.0
+offset_bottom = -75.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "🏰 BASE NECROMANCIEN"
+horizontal_alignment = 1
